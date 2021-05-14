@@ -1,0 +1,14 @@
+apiVersion: split.smi-spec.io/v1alpha1
+kind: TrafficSplit
+metadata:
+  name: fleetman-staff-service
+  namespace: default
+spec:
+  # The root service that clients use to connect to the destination application.
+  service: fleetman-staff-service
+  # Services inside the namespace with their own selectors, endpoints and configuration.
+  backends:
+  - service: fleetman-staff-service-stable
+    weight: 5
+  - service: fleetman-staff-service-risky
+    weight: 95
